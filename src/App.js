@@ -21,19 +21,45 @@ class App extends React.Component {
   handleSubmit = (event, newTodo) => {
     event.preventDefault();
     let todoShape = {
-      task: newTodo
+      task: newTodo,
+      id: Date.now(),
+      completed: false
     };
     const updatedList = [this.state.todos, todoShape];
     this.setState({
       todos: updatedList
     });
   };
+  toggleCompleted = id => {
+    const TodoById = this.state.todos.map(todo => {
+      return todo.id === id ? { ...todo, completed: !todo.completed } : todo;
+    });
+    this.setState({
+      todos: TodoById
+    });
+  };
+  clearCompleted = () => {
+    const completed = this.state.todos.filter(todo => {
+      return todo.completed === false;
+    });
+    this.setState({
+      todos: completed
+    });
+  };
+
   render() {
+    if (!this.state.todos) return <h1>Loading Todos</h1>;
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm />
-        <TodoList />
+        <TodoForm
+          handleSubmit={this.handleSubmit}
+          clearCompleted={this.clearCompleted}
+        />
+        <TodoList
+          todolist={this.state.todos}
+          toggleCompleted={this.toggleCompleted}
+        />
       </div>
     );
   }
