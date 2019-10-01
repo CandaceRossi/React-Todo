@@ -1,5 +1,5 @@
 import React from "react";
-import "./Todo.css";
+// import "./Todo.css";
 
 class Todo extends React.Component {
   constructor(props) {
@@ -9,15 +9,34 @@ class Todo extends React.Component {
   render() {
     return (
       <div>
-        <li
-          className={this.props.todoitem.completed ? "completed" : null}
-          onClick={() => this.props.toggleCompleted(this.props.todoitem.id)}
-        >
-          {this.props.todoitem.task}
-        </li>
+        <li>List Item</li>
       </div>
     );
   }
 }
 
 export default Todo;
+
+// import React from "react";
+// import "./Todo.css";
+
+// class Todo extends React.Component {
+//   constructor(props) {
+//     super(props);
+//   }
+
+//   render() {
+//     return (
+//       <div>
+//         <li
+//           className={this.props.todoitem.completed ? "completed" : null}
+//           onClick={() => this.props.toggleCompleted(this.props.todoitem.id)}
+//         >
+//           {this.props.todoitem.task}
+//         </li>
+//       </div>
+//     );
+//   }
+// }
+
+// export default Todo;

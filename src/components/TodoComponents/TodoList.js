@@ -1,49 +1,52 @@
-import React from "react";
+// // your components will all go in this `component` directory.
+// // feel free to change this component.js into TodoList.js
 
-// your components will all go in this `component` directory.
-// feel free to change this component.js into TodoList.js
+// import React from "react";
 
-import Todo from "./Todo.js";
+// // your components will all go in this `component` directory.
+// // feel free to change this component.js into TodoList.js
 
-class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchInput: ""
-    };
-  }
+// import Todo from "./Todo.js";
 
-  handleSearch = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
+// class TodoList extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       searchInput: ""
+//     };
+//   }
 
-  render() {
-    return (
-      <div>
-        <input
-          value={this.state.searchInput}
-          name="searchInput"
-          onChange={this.handleSearch}
-        />
-        <ul>
-          {this.props.todolist.map(
-            item =>
-              item.task.includes(this.state.searchInput) && (
-                <Todo
-                  todoitem={item}
-                  toggleCompleted={this.props.toggleCompleted}
-                />
-              )
-          )}
-        </ul>
-      </div>
-    );
-  }
-}
+//   handleSearch = event => {
+//     this.setState({
+//       [event.target.name]: event.target.value
+//     });
+//   };
 
-export default TodoList;
+//   render() {
+//     return (
+//       <div>
+//         <input
+//           value={this.state.searchInput}
+//           name="searchInput"
+//           onChange={this.handleSearch}
+//         />
+//         <ul>
+//           {this.props.todolist.map(
+//             item =>
+//               item.task.includes(this.state.searchInput) && (
+//                 <Todo
+//                   todoitem={item}
+//                   toggleCompleted={this.props.toggleCompleted}
+//                 />
+//               )
+//           )}
+//         </ul>
+//       </div>
+//     );
+//   }
+// }
+
+// export default TodoList;
 
 // class TodoList extends React.Component {
 //   constructor() {
