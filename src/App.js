@@ -18,7 +18,16 @@ class App extends React.Component {
       todos: data
     });
   }
-  componentDidUpdate() {}
+  handleSubmit = (event, newTodo) => {
+    event.preventDefault();
+    let todoShape = {
+      task: newTodo
+    };
+    const updatedList = [this.state.todos, todoShape];
+    this.setState({
+      todos: updatedList
+    });
+  };
   render() {
     return (
       <div>
