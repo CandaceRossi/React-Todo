@@ -1,23 +1,48 @@
 import React from "react";
-import { data } from "./dummyData.js";
-import TodoList from "./components/TodoList";
-import TodoForm from "./components/TodoForm";
+// import { data } from "./dummyData.js";
+import TodoList from "./components/TodoComponents/TodoList";
+import TodoForm from "./components/TodoComponents/TodoForm";
 
 class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
   constructor() {
     super();
     this.state = {
-      todos: []
+      todos: [
+        {
+          task: "Build out dummy data",
+          id: 1,
+          completed: false
+        },
+        {
+          task: "Render out dummy data",
+          id: 2,
+          completed: false
+        },
+        {
+          task: "Implement adding new data functionality",
+          id: 3,
+          completed: false
+        },
+        {
+          task: "Implement onClick (strike-through styling) functionality",
+          id: 4,
+          completed: false
+        },
+        {
+          task: "Work on stretch goals",
+          id: 5,
+          completed: false
+        }
+      ]
     };
   }
-  componentDidMount() {
+  componentDidMount = () => {
+    // const localData = JSON.parse(localStorage.getItem("todolist"));
     this.setState({
-      todos: data
+      todos: this.state.todos
     });
-  }
+  };
+
   handleSubmit = (event, newTodo) => {
     event.preventDefault();
     let todoShape = {
@@ -25,11 +50,14 @@ class App extends React.Component {
       id: Date.now(),
       completed: false
     };
-    const updatedList = [this.state.todos, todoShape];
+
+    const updatedList = [...this.state.todos, todoShape];
+
     this.setState({
       todos: updatedList
     });
   };
+
   toggleCompleted = id => {
     const TodoById = this.state.todos.map(todo => {
       return todo.id === id ? { ...todo, completed: !todo.completed } : todo;
@@ -38,6 +66,7 @@ class App extends React.Component {
       todos: TodoById
     });
   };
+
   clearCompleted = () => {
     const completed = this.state.todos.filter(todo => {
       return todo.completed === false;
@@ -46,9 +75,13 @@ class App extends React.Component {
       todos: completed
     });
   };
+  componentDidUpdate(prevState) {
+    if (prevState !== this.state) {
+      // localStorage.setItem("todolist", JSON.stringify(this.state));
+    }
+  }
 
   render() {
-    if (!this.state.todos) return <h1>Loading Todos</h1>;
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>

@@ -18,25 +18,27 @@ class TodoList extends React.Component {
       <div>
         <input
           value={this.state.search}
+          type="text"
           name="search"
           onChange={this.handleSearch}
         />
         <ul>
-          {this.props.todolist.map(
-            item =>
-              item.task.includes(this.state.search) && (
-                <Todo
-                  todoitem={item}
-                  toggleCompleted={this.props.toggleCompleted}
-                />
-              )
-          )}
+          {this.props.todolist.map(item => (
+            <Todo
+              todoitem={item}
+              toggleCompleted={this.props.toggleCompleted}
+            />
+          ))}
         </ul>
       </div>
     );
   }
 }
 export default TodoList;
+
+/* item.task.includes(this.state.search) && ( */
+
+/* ) */
 
 // // your components will all go in this `component` directory.
 // // feel free to change this component.js into TodoList.js
